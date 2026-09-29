@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MicroSave Dashboard</title>
+
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">M</div>
+            <div>
+                <h2>MicroSave</h2>
+                <p>Microfinance</p>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <button class="nav-item active" onclick="showPage('dashboard', this)">
+                <span>🏠</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item" onclick="showPage('groups', this)">
+                <span>👥</span>
+                <span>Groups</span>
+            </button>
+
+            <button class="nav-item" onclick="showPage('members', this)">
+                <span>👤</span>
+                <span>Members</span>
+            </button>
+
+            <button class="nav-item" onclick="showPage('contributions', this)">
+                <span>💰</span>
+                <span>Contributions</span>
+            </button>
+
+            <button class="nav-item" onclick="showPage('loans', this)">
+                <span>💳</span>
+                <span>Loans</span>
+            </button>
+
+            <button class="nav-item" onclick="showPage('repayments', this)">
+                <span>🔄</span>
+                <span>Repayments</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <span class="online-dot"></span>
+            <span>System Online</span>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p id="pageSubtitle">
+                    Self-Help Group Microfinance Management System
+                </p>
+            </div>
+
+            <div class="admin-profile">
+                <div class="admin-avatar">A</div>
+
+                <div>
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="page active-page">
+
+            <div class="welcome-card">
+
+                <div>
+                    <span class="welcome-label">MICROSAVE MANAGEMENT</span>
+
+                    <h2>Welcome to MicroSave 👋</h2>
+
+                    <p>
+                        Manage groups, members, savings, loans and repayments
+                        from one place.
+                    </p>
+                </div>
+
+                <button class="primary-button"
+                        onclick="showPage('members')">
+                    + Add Member
+                </button>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        👥
+                    </div>
+
+                    <div>
+                        <p>Total Groups</p>
+                        <h2 id="totalGroups">0</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        👤
+                    </div>
+
+                    <div>
+                        <p>Total Members</p>
+                        <h2 id="totalMembers">0</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        💰
+                    </div>
+
+                    <div>
+                        <p>Total Savings</p>
+                        <h2 id="totalSavings">₹0</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        💳
+                    </div>
+
+                    <div>
+                        <p>Active Loans</p>
+                        <h2 id="activeLoans">0</h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DASHBOARD PANELS -->
+
+            <div class="two-column">
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Loan Overview</h3>
+                            <p>Current loan information</p>
+                        </div>
+                    </div>
+
+                    <div class="loan-boxes">
+
+                        <div class="loan-box">
+                            <span>Total Loan Amount</span>
+                            <strong id="totalLoanAmount">₹0</strong>
+                        </div>
+
+                        <div class="loan-box">
+                            <span>Outstanding</span>
+                            <strong id="outstandingAmount">₹0</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>System Status</h3>
+                            <p>Backend connection</p>
+                        </div>
+                    </div>
+
+                    <div class="backend-status">
+
+                        <div class="status-circle"></div>
+
+                        <div>
+                            <strong>Backend Connected</strong>
+                            <p>Spring Boot API is running</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT LOANS -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Recent Loans</h3>
+                        <p>Latest loan records</p>
+                    </div>
+
+                    <button class="light-button"
+                            onclick="showPage('loans')">
+                        View All
+                    </button>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Member</th>
+                            <th>Principal</th>
+                            <th>Outstanding</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="recentLoans">
+
+                        <tr>
+                            <td colspan="6" class="loading">
+                                Loading...
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= GROUPS ================= -->
+
+        <section id="groups" class="page">
+
+            <div class="page-card">
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Groups</h2>
+                        <p>Manage Self-Help Groups</p>
+                    </div>
+
+                    <button class="primary-button"
+                            onclick="showMessage('Add Group form will be connected to the existing API.')">
+                        + Add Group
+                    </button>
+
+                </div>
+
+                <div id="groupsContent">
+                    <div class="loading-box">Loading groups...</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MEMBERS ================= -->
+
+        <section id="members" class="page">
+
+            <div class="page-card">
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Members</h2>
+                        <p>Manage registered group members</p>
+                    </div>
+
+                    <button class="primary-button"
+                            onclick="showMessage('Add Member form will be connected to the existing API.')">
+                        + Add Member
+                    </button>
+
+                </div>
+
+                <div id="membersContent">
+                    <div class="loading-box">Loading members...</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTRIBUTIONS ================= -->
+
+        <section id="contributions" class="page">
+
+            <div class="page-card">
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Contributions</h2>
+                        <p>Track member savings and contributions</p>
+                    </div>
+
+                    <button class="primary-button"
+                            onclick="showMessage('Add Contribution form will be connected to the existing API.')">
+                        + Add Contribution
+                    </button>
+
+                </div>
+
+                <div id="contributionsContent">
+                    <div class="loading-box">Loading contributions...</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LOANS ================= -->
+
+        <section id="loans" class="page">
+
+            <div class="page-card">
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Loans</h2>
+                        <p>Manage member loans</p>
+                    </div>
+
+                    <button class="primary-button"
+                            onclick="showMessage('New Loan form will be connected to the existing API.')">
+                        + New Loan
+                    </button>
+
+                </div>
+
+                <div id="loansContent">
+                    <div class="loading-box">Loading loans...</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= REPAYMENTS ================= -->
+
+        <section id="repayments" class="page">
+
+            <div class="page-card">
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Repayments</h2>
+                        <p>Track loan repayments</p>
+                    </div>
+
+                    <button class="primary-button"
+                            onclick="showMessage('Add Repayment form will be connected to the existing API.')">
+                        + Add Repayment
+                    </button>
+
+                </div>
+
+                <div id="repaymentsContent">
+                    <div class="loading-box">Loading repayments...</div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MESSAGE -->
+
+<div id="messageBox" class="message-box"></div>
+
+
+<script src="/js/dashboard.js"></script>
+
+</body>
+</html>
